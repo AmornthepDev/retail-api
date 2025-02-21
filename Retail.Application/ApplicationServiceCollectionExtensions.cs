@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Retail.Application.Database;
-using System.Runtime.CompilerServices;
 
 namespace Retail.Application
 {
