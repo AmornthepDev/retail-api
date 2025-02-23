@@ -29,7 +29,9 @@ namespace Retail.Application.Database
                         Email NVARCHAR(256) NULL,
                         EmailConfirmed BIT NOT NULL DEFAULT 0,
                         PhoneNumber NVARCHAR(50) NULL,
-                        PhoneNumberConfirmed NOT NULL DEFAULT 0,
+                        PhoneNumberConfirmed BIT NOT NULL DEFAULT 0,
+                        FirstName NVARCHAR(256) NULL,
+                        LastName NVARCHAR(256) NULL,
                     );
                 END;
 
@@ -125,12 +127,12 @@ namespace Retail.Application.Database
                         Id INT IDENTITY(1, 1) PRIMARY KEY,
                         OrderNumber VARCHAR(50) NOT NULL UNIQUE,
                         OrderDate DATETIME NOT NULL DEFAULT GETDATE(),
-                        CustomerId INT NOT NULL,
+                        CustomerId NVARCHAR(450) NULL,
                         TotalAmount DECIMAL(18, 2) NOT NULL DEFAULT 0,
                         DiscountAmount DECIMAL(18, 2) NOT NULL DEFAULT 0,
                         NetAmount AS (TotalAmount - DiscountAmount) PERSISTED,
                         Status TINYINT NOT NULL DEFAULT 0,
-                        FOREIGN KEY (CustomerId) REFERENCE AspNetUsers(Id) ON DELETE SET NULL,
+                        FOREIGN KEY (CustomerId) REFERENCES AspNetUsers(Id) ON DELETE SET NULL,
                     );
                 END;
 
@@ -299,6 +301,12 @@ namespace Retail.Application.Database
                         (2, '{"DiscountValue":50, "IsPercentage": true,"ApplyToCheaperItem":true,"CategoryId":2}'),
                         (3, '{"BundleItemsSubCategoryIds": [1, 4], "DiscountValue": 10,"IsPercentage": false}'),
                         (4, '{"MinOrderAmount": 1000,"DiscountValue": 50,"IsPercentage": false}');
+
+                -- Insert Roles
+                INSERT INTO AspNetRoles (Id, Name, NormalizedName)
+                VALUES 
+                ('00000000-0000-0000-0000-000000000010', 'Admin', 'ADMIN'),
+                ('00000000-0000-0000-0000-000000000020', 'Customer', 'CUSTOMER');
             """;
 
             await connection.ExecuteAsync(sql);

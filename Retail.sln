@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retail.API", "Retail.API\Retail.API.csproj", "{63831165-6478-47AB-A7D9-34AC88F156A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Retail.API", "Retail.API\Retail.API.csproj", "{63831165-6478-47AB-A7D9-34AC88F156A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retail.Application", "Retail.Application\Retail.Application.csproj", "{F959F637-E68A-4CDF-B7A7-75AF10B2B756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Retail.Application", "Retail.Application\Retail.Application.csproj", "{F959F637-E68A-4CDF-B7A7-75AF10B2B756}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retail.Contracts", "Retail.Contracts\Retail.Contracts.csproj", "{B308CAD4-E008-4B49-8B61-A569920F00BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F959F637-E68A-4CDF-B7A7-75AF10B2B756}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F959F637-E68A-4CDF-B7A7-75AF10B2B756}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F959F637-E68A-4CDF-B7A7-75AF10B2B756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B308CAD4-E008-4B49-8B61-A569920F00BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B308CAD4-E008-4B49-8B61-A569920F00BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B308CAD4-E008-4B49-8B61-A569920F00BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B308CAD4-E008-4B49-8B61-A569920F00BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

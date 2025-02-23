@@ -8,7 +8,7 @@
         public string? Description { get; set; }
 
         #region Navigation Property
-        public required List<ProductVariants> Variants { get; set; }
+        public required List<ProductVariants> Variants { get; set; } = new();
         public required List<Category> Categories { get; set; } = new();
         public required List<SubCategory> subCategories { get; set; } = new();
         #endregion

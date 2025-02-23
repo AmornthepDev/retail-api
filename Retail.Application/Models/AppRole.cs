@@ -3,7 +3,11 @@
     public class AppRole
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
-        public required string Name { get; set; }
-        public required string NormalizedName { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string NormalizedName { get; set; } = string.Empty;
+
+        #region Navigation Property
+        public List<AppUser> Users { get; set; } = new();
+        #endregion
     }
 }
