@@ -17,6 +17,45 @@ namespace Retail.Application.Database
 
             var sql = """
                 -- Create Tables
+
+                -- AspNetUsers: stores user credentials and basic info.
+                IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'AspNetUsers') AND type = N'U')
+                BEGIN
+                    CREATE TABLE AspNetUsers (
+                        Id NVARCHAR(450) PRIMARY KEY,
+                        UserName NVARCHAR(256) NOT NULL,
+                        NormalizedUserName NVARCHAR(256) NOT NULL,
+                        PasswordHash NVARCHAR(MAX) NOT NULL,
+                        Email NVARCHAR(256) NULL,
+                        EmailConfirmed BIT NOT NULL DEFAULT 0,
+                        PhoneNumber NVARCHAR(50) NULL,
+                        PhoneNumberConfirmed NOT NULL DEFAULT 0,
+                    );
+                END;
+
+                -- AspNetRoles: stores roles.
+                IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'AspNetRoles') AND type = N'U')
+                BEGIN
+                    CREATE TABLE AspNetRoles (
+                        Id NVARCHAR(450) PRIMARY KEY,
+                        Name NVARCHAR(256) NOT NULL,
+                        NormalizedName NVARCHAR(256) NOT NULL
+                    );
+                END;
+
+                -- AspNetUserRoles: join table linking users to roles.
+                IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'AspNetUserRoles') AND type = N'U')
+                BEGIN
+                    CREATE TABLE AspNetUserRoles (
+                        UserId NVARCHAR(450) NOT NULL,
+                        RoleId NVARCHAR(450) NOT NULL,
+                        PRIMARY KEY (UserId, RoleId),
+                        FOREIGN KEY (UserId) REFERENCES AspNetUsers(Id) ON DELETE CASCADE,
+                        FOREIGN KEY (RoleId) REFERENCES AspNetRoles(Id) ON DELETE CASCADE
+                    );
+                END;
+
+
                 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Products') AND type = N'U')
                 BEGIN
                     CREATE TABLE Products (
@@ -86,11 +125,12 @@ namespace Retail.Application.Database
                         Id INT IDENTITY(1, 1) PRIMARY KEY,
                         OrderNumber VARCHAR(50) NOT NULL UNIQUE,
                         OrderDate DATETIME NOT NULL DEFAULT GETDATE(),
-                        CustomerId INT NULL,
+                        CustomerId INT NOT NULL,
                         TotalAmount DECIMAL(18, 2) NOT NULL DEFAULT 0,
                         DiscountAmount DECIMAL(18, 2) NOT NULL DEFAULT 0,
                         NetAmount AS (TotalAmount - DiscountAmount) PERSISTED,
-                        Status TINYINT NOT NULL DEFAULT 0
+                        Status TINYINT NOT NULL DEFAULT 0,
+                        FOREIGN KEY (CustomerId) REFERENCE AspNetUsers(Id) ON DELETE SET NULL,
                     );
                 END;
 
