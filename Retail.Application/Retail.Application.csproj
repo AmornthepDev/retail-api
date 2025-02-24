@@ -6,6 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Models\GetAllProductsOptions.cs~RF14ab0334.TMP" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.66" />
@@ -17,10 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Retail.Contracts\Retail.Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Mapping\" />
   </ItemGroup>
 
 </Project>

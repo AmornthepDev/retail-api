@@ -2,7 +2,7 @@
 {
     public class SubCategory
     {
-        public required int Id { get; set; }
+        public required int SubCategoryId { get; set; }
         public required string Name { get; set; }
     }
 }

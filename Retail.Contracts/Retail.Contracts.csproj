@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Base\kxntwzac.4iu~" />
+    <None Remove="Base\PagedResponse.cs~RF14c13e3f.TMP" />
+  </ItemGroup>
+
 </Project>
